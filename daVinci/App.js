@@ -34,13 +34,6 @@ import {
           color = '#ffdb58'
           />
 
-          <Button
-          onPress={()=>{
-            somaVotos(contVotos + 1);
-          }}
-          title="Se desejar pode votar mais uma vez"
-          color = '#ff0000'
-           />
       </SafeAreaView>
     
       );
