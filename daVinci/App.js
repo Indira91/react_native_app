@@ -30,7 +30,7 @@ import {
             somaVotos(contVotos + 1);
           }}
           
-          title="votar mais de uma vez"
+          title="aperte de novo para votar"
           color = '#ffdb58'
           />
 
@@ -38,7 +38,7 @@ import {
           onPress={()=>{
             somaVotos(contVotos + 1);
           }}
-          title="aqui tambem pode votar"
+          title="Se desejar pode votar mais uma vez"
           color = '#ff0000'
            />
       </SafeAreaView>
