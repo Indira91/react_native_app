@@ -29,7 +29,7 @@ class VotosContab extends React.Component {
           onPress={()=>
             this.setState({votos: this.state.votos + 1})}
           
-          title ="VOTAR AQUI"
+          title ="PRESS PARA VOTAR"
           color = '#182490'
           disabled = {this.state.votos >= 100}
         />
