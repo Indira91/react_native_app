@@ -57,5 +57,3 @@ export default VotosContab;
 
    //13-04-2020 quarenteners 
    //exercicio finalizado
-  
-  
