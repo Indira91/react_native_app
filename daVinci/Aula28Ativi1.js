@@ -15,7 +15,7 @@ import {
     return(
       <SafeAreaView>
 
-        <Text>Total de votos contabilizado: {contVotos}</Text>
+        <Text style = {{fontSize: 25 }}>Total de votos contabilizado: {contVotos}{"\n"}</Text>
 
           <Button 
           onPress={()=>{
@@ -24,23 +24,19 @@ import {
           title="aperte aqui para votar"
           color = '#182450'
           />
-        
+
+        <Text>{"\n"}</Text>
+
           <Button
           onPress={()=>{
             somaVotos(contVotos + 1);
           }}
           
-          title="aperte de novo "
+          title="adicione mais um voto "
           color = '#dd2580'
           />
 
-          <Button 
-          onPress={()=>{
-            somaVotos(contVotos + 1);
-          }}
-          title="adicione mais um voto aqui"
-          color = '#182490'
-          />
+     
 
       </SafeAreaView>
     
@@ -49,3 +45,4 @@ import {
 
   //07-04-2020 quarenteners
   //Atividade finalizada
+  
