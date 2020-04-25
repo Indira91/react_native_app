@@ -55,5 +55,11 @@ export default VotosContab;
     },
   })  
 
+
+ 
+  //Desenvolva o aplicativo contador de votos da aula 28 usando class components. 
+  //Lembre-se, o app deve ter: - botão que ao ser clicado incrementa o número de votos 
+  //- texto que mostra o número de votos atual
+
    //13-04-2020 quarenteners 
    //exercicio finalizado

@@ -7,117 +7,113 @@ import {
   Button,
   Alert,
   StyleSheet,
-  ColorPropType
+  ImageBackground
 } from 'react-native';
 
-      const styles = StyleSheet.create ({
-        Safe: {
-        
-          marginLeft: 10,
-          marginEnd: 10,
-          marginHorizontal: 15,
-          marginVertical: 15
-          
-        },
-        TextCost:{
-          color: "green",
-          fontSize: 40,
-          fontFamily: 'sans-serif-condensed',
-          fontWeight: "bold",
-          textAlign: 'center'
-        },
-        contenedor: {
-          backgroundColor: '#98FB98',
-          borderColor: 'black',
-          borderWidth: 1,
-          alignSelf: 'stretch',
-          paddingLeft: 10,
-          paddingTop: 10,
-          padding: 60,
-          fontSize: 20
-        },
-        novo: {
-          fontSize: 25,
-          color: "green",
-          textAlign: 'left'
-          
-        },
 
-      })
+        const TextoPadrao = props => {
+            return (<Text style={{fontFamily: 'Roboto'}}>{props.children}</Text>
+            
+            );
+        }
 
-class ContadorDeCarateres extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      caractere: '',
-      tempo: 5,
-     
-    }
-  }
+        const TextoPadraoNegrito = props => {
+            return (
+                <TextoPadrao> <Text style={{fontWeight: "bold", color: "white"}}> {props.children} </Text></TextoPadrao>
+            );
+        }
 
-  ticTac(){
-    this.setState((state) =>({
-      tempo: state.tempo - 1
-    }))
-  }
+        const TextoTituloPadrao = props => {
+            return (
+            <TextoPadraoNegrito> <Text style={{ fontSize: 40 }}>{props.children}</Text></TextoPadraoNegrito> 
+            );
+        }
 
-  boraJogar() {
-    this.tempoID = setInterval(
-       () =>this.ticTac(),
-      1000
-    )
-  }
-  componentDidUpdate() {
-    if(this.state.tempo === 0) {
-      clearInterval(this.tempoID)
-      Alert.alert (`QUANTIDADE DE CARACTERES DIGITADA: ${this.state.caractere.length}`)
-    }
-  }
+  function series () {
+    const [digTexto, setTexto] = useState ('');
+    const [textPostado, setTextPostado] = useState('')
 
 
+    return(
+    <SafeAreaView>
 
-render() {
-  return (
-    <SafeAreaView style={styles.Safe}>
+       <ImageBackground source={image} style={styles.backgroundImage}>
+            <TextoTituloPadrao>
+             LA CASA DE PAPEL  {"\n"}
+            </TextoTituloPadrao>
 
-        <Text style={styles.TextCost}> VAMOS JOGAR </Text>
-    
-        <Text style = {{fontSize: 15}}>{'\n'}O jogo consiste em digitar a maior quantidade de carateres dentro do limite de tempo especificado...
-          Good luck!!!
-        </Text>
-
-        <Text>{'\n'}</Text>
-
-        <Button 
-           onPress = {() => {
-            this.setState({
-              caractere: '', 
-              tempo: 5,
-            })
-            this.boraJogar()
+            <TextInput 
+            style={styles.contenedor}
+            multiline = {true}
+            placeholder ={"Compartilhe conosco sua critica da serie: "}
+            onChangeText = {(digTexto) => setTexto(digTexto)}
+            maxLength = {140}
+            value= {digTexto}
+            />
+            <Text>{'\n',"\n"}</Text>
+            <Button 
+            onPress = {() => {
+               setTextPostado(digTexto)
+               Alert.alert("Obrigada por compartilhar!!!") 
+               setTexto('')
             }}
-           title = "Começar"
-           color = '#229954'
-         
-         />
+            title = "postar"
+            color = 'black'
+            disabled = {digTexto.length<=50}
 
-        <Text>{'\n'}</Text>
+            />
 
-        <TextInput
-          style = {styles.contenedor}
-          multiline = {true}
-          placeholder = {"Comece a digitar: "}
-          onChangeText = {caractere => this.setState({caractere})}
-          
-        />
+            <TextoPadraoNegrito> <Text  style= {{fontSize: 35}}> {"\n"} {"\n"} COMENTARIO: </Text> </TextoPadraoNegrito>
 
-        <Text>{'\n'}</Text>
+            <TextoPadrao><Text style={{fontSize: 20, fontWeight: "bold"}} >{textPostado}</Text></TextoPadrao>
 
-        <Text style={styles.novo}>TEMPO REGRESSIVO: {this.state.tempo} </Text>
-    
+
+        </ImageBackground>
+
     </SafeAreaView>
-  ) 
- }
-}
+    );
+  }
+  export default series;
 
-export default ContadorDeCarateres;
+        const image = { uri: 'https://lacasadepapelexperience.com/assets/img/la-casa-de-papel-experience2.jpg' };
+        const styles = StyleSheet.create({
+        contenedor: {
+            alignItems: "flex-start",
+            borderColor: 'black',
+            padding: 10,
+            width: 380,
+            backgroundColor: '#ff4d4d',
+            borderWidth: 1,
+            paddingTop: 1,
+            height:170,
+            fontSize: 20,
+            opacity: 12
+  
+        },
+        backgroundImage:{
+            width:412,
+            height:660,
+            alignItems: "center",
+            opacity: 0.8
+        },
+        
+        })
+
+//09-04-2020 quarenteners
+
+//Text, TextInput e Button 
+ 
+//1 - Implemente os seguintes componentes para serem usados em um app: 
+
+//● TextoPadrao - deve definir a família tipográfica (fontFamily)  que será herdado pelos outros componentes 
+//● TextoPadraoNegrito - estende o TextoPadrao e define um peso da fonte maior (fontWeigh) 
+//● TextoTituloPadrao - estende TextPadraoNegrito e define um tamanho maior de fonte. 
+//Os componentes devem receber o texto que será mostrado ao usuário via children e não via props. 
+ 
+//2 - Crie um app com as seguintes características: 
+
+//● título, uma caixa de texto, um botão com o título 'postar' e um componente Text para exibir a última postagem
+//● a caixa de texto admite mensagens de no máximo 140 caracteres e deve quebrar o texto em mais de uma linha 
+//● o botão 'postar' fica desabilitado até que o usuário preencha a caixa de texto com no mínimo 50 caracteres 
+//● quando o botão é clicado, a caixa de texto deve ser limpa e o que estava escrito nela aparece no 
+//elemento Text, que exibe a última postagem
